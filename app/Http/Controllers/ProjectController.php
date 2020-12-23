@@ -68,7 +68,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $projects=Project::where("id",$id)->get();
+        return view("projects.view",compact("projects"));
     }
 
     /**

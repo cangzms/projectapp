@@ -34,8 +34,9 @@
                                     <!-- Call to action buttons -->
                                     <ul class="list-inline m-0 pull-right">
                                         <li class="list-inline-item">
-                                            <button class="btn btn-primary " type="button" >View</button>
+                                            <a href="{{route("projects.show",$project->id)}}"><button class="btn btn-primary "type="button">View</button></a>
                                         </li>
+
                                         <li class="list-inline-item">
                                             <button class="btn btn-success " type="button">Edit</button>
                                         </li>
