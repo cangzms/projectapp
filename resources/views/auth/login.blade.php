@@ -44,10 +44,11 @@
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
                         {{ __("Don't have a account?") }}
                     </a>
-
+             <a href="{{route("projects.index")}}">
                 <x-button class="ml-3">
                     {{ __('Login') }}
                 </x-button>
+                </a>
             </div>
         </form>
     </x-auth-card>

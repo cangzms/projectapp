@@ -13,10 +13,11 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $id=Auth::user()->id;
 
-        $projects=Project::all();
+        $projects=Project::where("user_id",$id)->orderBy("user_id")->get();
 
 
         return view('projects.index', compact('projects'));
@@ -42,15 +43,18 @@ class ProjectController extends Controller
     {
         $validator=$request->validate([
             "name"=>["unique:projects","required"]
-        ]);
+        ],
+            [
+                "name.unique"=>"Please enter a different name"
+            ]);
 
 
        $create= Project::create([
            "name"=>$request->name,
            "user_id"=>auth()->id()
         ]);
-       echo $create;
-        if ($validator){
+
+        if (!$validator){
             return back()->with("error","Enter a Different Name");
         }
         else{
@@ -80,7 +84,8 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $projects=Project::where("id",$id)->first();
+        return view("projects.edit",compact("projects"));
     }
 
     /**
@@ -92,7 +97,21 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator=$request->validate([
+            "name"=>["unique:projects","required"]
+        ]);
+
+        $updated = Project::where("id",$id)->update([
+
+            "name"=>$request->name
+        ]);
+
+        if (!$validator){
+            return back()->with("error","Enter a Different Name");
+        }
+        else{
+            return redirect(route("projects.index"))->with("success","Edit Project Successful");
+        }
     }
 
     /**
@@ -103,6 +122,8 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $deleted=Project::where("id",$id)->delete();
+        return redirect(route("projects.index"));
     }
 }

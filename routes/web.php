@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::resource("/projects","\App\Http\Controllers\ProjectController");
+Route::resource("/projects","\App\Http\Controllers\ProjectController")->middleware("auth");
 
 Route::get('/', "\App\Http\Controllers\HomeController@index")->middleware("auth");
 

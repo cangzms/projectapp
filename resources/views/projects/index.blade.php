@@ -1,5 +1,18 @@
 @extends("layouts.bootstrap")
 <x-app-layout>
+
+    @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+    @if(session()->get('danger'))
+        <div class="alert alert-danger">
+            {{ session()->get('danger') }}
+        </div>
+    @endif
+
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Projects') }}
@@ -38,14 +51,23 @@
                                         </li>
 
                                         <li class="list-inline-item">
-                                            <button class="btn btn-success " type="button">Edit</button>
+                                            <a href="{{route("projects.edit",$project->id)}}"><button class="btn
+                                         btn-success "
+                                            type="button">Edit</button></a>
                                         </li>
                                         <li class="list-inline-item" >
-                                            <button class="btn btn-danger " type="button">Delete</button>
+                                            <form method="POST" action="{{ route('projects.destroy', $project->id) }}">
+                                                @csrf
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <button type="submit" class="btn btn-xs btn-danger btn-flat
+                                                show_confirm" data-toggle="tooltip" title='Delete'> <i class="fa
+                                                fa-trash"> </i>Delete</button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
+
                             </tbody>
                             @endforeach
 
@@ -62,4 +84,14 @@
             float: right;
         }
     </style>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $('.show_confirm').click(function(e) {
+            if(!confirm('Are you sure you want to delete this?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </x-app-layout>

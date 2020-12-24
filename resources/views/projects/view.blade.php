@@ -21,6 +21,8 @@
                                 <hr>
                                 <b>Api Secret</b> = {{$project->api_secret}}
                               @endforeach
+                                 <hr>
+                                 <a href="{{route("projects.index")}}"><button class="btn btn-warning">Back</button></a>
 
 
 
