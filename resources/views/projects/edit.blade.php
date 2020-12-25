@@ -18,6 +18,12 @@
                     <div class="col-xs-6 col-xs-offset-3 col-md-3">
                         Edit Project Name
                         <hr>
+                        @if($errors->has("name"))
+                        <div id="validationServer03Feedback" class="alert alert-danger">
+                            {{$errors->first("name")}}
+                        </div>
+                        @endif
+
                         <input type="text" class="form-control" name="name">
                         <hr>
                             <button class="btn btn-info" >Edit</button>

@@ -16,8 +16,15 @@
                 <div class="form-group" align="center">
                     <div class="col-xs-6 col-xs-offset-3 col-md-3">
                        Project Name
+
                         <hr>
-                        <input type="text" class="form-control" name="name">
+                        @if($errors->has("name"))
+                        <div id="validationServer03Feedback" class="alert alert-danger">
+                            {{$errors->first("name")}}
+                        </div>
+                        @endif
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="name">
                         <hr>
                         <button class="btn btn-primary" >Create</button>
                     </div>

@@ -42,12 +42,8 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validator=$request->validate([
-            "name"=>["unique:projects","required"]
-        ],
-            [
-                "name.unique"=>"Please enter a different name"
-            ]);
-
+            "name"=>["required"]
+        ]);
 
        $create= Project::create([
            "name"=>$request->name,
@@ -98,7 +94,7 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         $validator=$request->validate([
-            "name"=>["unique:projects","required"]
+            "name"=>["required"]
         ]);
 
         $updated = Project::where("id",$id)->update([
@@ -106,12 +102,9 @@ class ProjectController extends Controller
             "name"=>$request->name
         ]);
 
-        if (!$validator){
-            return back()->with("error","Enter a Different Name");
-        }
-        else{
+
             return redirect(route("projects.index"))->with("success","Edit Project Successful");
-        }
+
     }
 
     /**

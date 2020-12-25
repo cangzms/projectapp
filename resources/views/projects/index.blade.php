@@ -71,7 +71,6 @@
                             </tbody>
                             @endforeach
 
-
                         </table>
                     </div>
                 </div>
