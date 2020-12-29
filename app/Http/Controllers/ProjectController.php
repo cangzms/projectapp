@@ -42,11 +42,19 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validator=$request->validate([
-            "name"=>["required"]
+            "name"=>["required"],
+            "aws_access_key"=>["nullable"],
+            "aws_secret_key"=>["nullable"],
+            "aws_region"=>["nullable"],
+            "aws_bucket"=>["nullable"],
         ]);
 
        $create= Project::create([
            "name"=>$request->name,
+           "aws_access_key"=>$request->aws_access_key,
+            "aws_secret_key"=>$request->aws_secret_key,
+            "aws_region"=>$request->aws_region,
+            "aws_bucket"=>$request->aws_bucket,
            "user_id"=>auth()->id()
         ]);
 
@@ -63,13 +71,13 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        $projects=Project::where("id",$id)->get();
-        return view("projects.view",compact("projects"));
+        // $projects=Project::find($id);
+        return view("projects.view",compact("project"));
     }
 
     /**
@@ -94,12 +102,20 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         $validator=$request->validate([
-            "name"=>["required"]
+            "name"=>["required"],
+            "aws_access_key"=>["nullable"],
+            "aws_secret_key"=>["nullable"],
+            "aws_region"=>["nullable"],
+            "aws_bucket"=>["nullable"],
         ]);
 
         $updated = Project::where("id",$id)->update([
 
-            "name"=>$request->name
+            "name"=>$request->name,
+            "aws_access_key"=>$request->aws_access_key,
+            "aws_secret_key"=>$request->aws_secret_key,
+            "aws_region"=>$request->aws_region,
+            "aws_bucket"=>$request->aws_bucket,
         ]);
 
 
@@ -119,4 +135,21 @@ class ProjectController extends Controller
         $deleted=Project::where("id",$id)->delete();
         return redirect(route("projects.index"));
     }
+
+/*
+    public function token(Request $request)
+    {
+        $project = Project::where('api_key', $request->header('Api-Key'))
+            ->where('api_secret', $request->header('Api-Secret'))->firstOrFail();
+
+//        $success['token'] = $project->createToken('token')->accessToken;
+  //      $success['project_name'] = $project->name;
+    //    $success['project_id'] = $project->id;
+
+        //$request->merge(['project_id' => $project->id]);
+
+
+        return response()->json($success, 200);
+    }
+*/
 }

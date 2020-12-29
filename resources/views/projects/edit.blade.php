@@ -24,9 +24,19 @@
                         </div>
                         @endif
 
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" value="{{$projects->name}}" name="name">
                         <hr>
-                            <button class="btn btn-info" >Edit</button>
+                        <hr>
+                        AWS Access Key<input type="text" class="form-control" value="{{$projects->aws_access_key}}"
+                                             name="aws_access_key">
+                        <hr>
+                        AWS Secret Key<input type="text" class="form-control" value="{{$projects->aws_secret_key}}" name="aws_secret_key">
+                        <hr>
+                        AWS Region<input type="text" class="form-control" value="{{$projects->aws_region}}" name="aws_region">
+                        <hr>
+                        AWS Bucket<input type="text" class="form-control" value="{{$projects->aws_bucket}}" name="aws_bucket">
+                            <button class="btn btn-info" >Save</button>
+
                     </div>
                 </div>
 

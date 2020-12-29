@@ -14,14 +14,26 @@
                     <div class="table-responsive">
                         <table class="table  ">
 
-                             @foreach($projects as $project)
-                                <b>Project Name</b> = {{$project->name}}
-                                <hr>
-                                <b>Api Key</b> = {{$project->api_key}}
-                                <hr>
-                                <b>Api Secret</b> = {{$project->api_secret}}
-                              @endforeach
-                                 <hr>
+                            <b>Project Name</b> = {{$project->name}}
+                            <hr>
+
+                            <b>Api Key</b> = {{$project->api_key}}
+                            <hr>
+
+                            <b>Api Secret</b> = {{$project->api_secret}}
+                            <hr>
+
+                            <b>AWS Access</b> = {{$project->aws_access_key}}
+                            <hr>
+
+                            <b>AWS Secret</b> = {{$project->aws_secret_key}}
+                            <hr>
+
+                            <b>AWS Region</b> = {{$project->aws_region}}
+                            <hr>
+
+                            <b>AWS Bucket</b> = {{$project->aws_bucket}}
+                            <hr>
                                  <a href="{{route("projects.index")}}"><button class="btn btn-warning">Back</button></a>
 
 

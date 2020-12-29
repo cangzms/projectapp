@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::post("login","\App\Http\Controllers\UserController@login");
 Route::post("register","\App\Http\Controllers\UserController@register");
 
-Route::group(["middleware"=>"auth:api"],function (){
-    Route::get("deneme","\App\Http\Controllers\UserController@deneme") ;
+Route::group(["middleware"=>"check.api"],function (){
+    Route::post("token","\App\Http\Controllers\ProjectController@token") ;
 
+});
+
+Route::group(['prefix' => 'cloud', 'middleware' => ['auth:api']], function () {
+    Route::get('pdfs', 'CloudController@pdfs');
+    Route::get('codes/{code}','CloudController@code');
+    Route::post('pdfs', 'CloudController@store');
 });

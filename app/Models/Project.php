@@ -6,16 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\ProjectHelper;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\HasApiTokens;
+
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasApiTokens,HasFactory;
 
     protected $fillable =[
         "name",
         "user_id",
         "api_key",
-        "api_secret"
+        "api_secret",
+        "aws_access_key",
+        "aws_secret_key",
+        "aws_region",
+        "aws_bucket",
+
     ];
 
     public function user()
