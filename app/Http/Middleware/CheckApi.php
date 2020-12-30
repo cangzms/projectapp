@@ -17,12 +17,16 @@ class CheckApi
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (!$request->header("api-key")||!$request->header("api-secret")){
-            abort(404,"Api and Secret key needed");
+        if (!$request->header("Accept")){
+            return response()->json(["message"=>"Accept must be application/json"],404);
         }
-        $project=Project::where("api_key",$request->header("api-key"))->where("api_secret",$request->header("api-secret"))->firstOrFail();
-
+        if (!$request->header("ApiKey")||!$request->header("ApiSecret")){
+            return response()->json(["message"=>"Api and Secret key needed"],400);
+        }
+        $project=Project::where("api_key",$request->header("ApiKey"))->where("api_secret",$request->header("ApiSecret"))->first();
+        if (!$project){
+            return response()->json(["message"=>"Api and Secret key error"],404);
+        }
         $request->merge(["id"=>$project->id]);
 
 

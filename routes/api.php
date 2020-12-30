@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CloudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,8 @@ Route::group(["middleware"=>"check.api"],function (){
 
 });
 
-Route::group(['prefix' => 'cloud', 'middleware' => ['auth:api']], function () {
-    Route::get('pdfs', 'CloudController@pdfs');
-    Route::get('codes/{code}','CloudController@code');
-    Route::post('pdfs', 'CloudController@store');
+Route::group(['prefix' => 'cloud', 'middleware' => ['check.api']], function () {
+    Route::get('pdfs', [CloudController::class,"pdfs"]);
+    Route::get('codes/{code}',[CloudController::class,"code"]);
+    Route::post('pdfs', [CloudController::class,"store"]);
 });

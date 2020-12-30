@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PdfStoreRequest;
 use App\Models\Cloud;
 use Illuminate\Http\Request;
 use Storage;
@@ -44,13 +45,8 @@ class CloudController extends Controller
         ], 200);
     }
 
-    public function store(Request $request)
+    public function store(PdfStoreRequest $request)
     {
-        $request->validate([
-            'html' => 'required',
-            'head' => 'nullable'
-        ]);
-
         $cloud = Cloud::startProcess($request);
 
         return response()->json([
