@@ -18,10 +18,10 @@ use App\Http\Controllers\CloudController;
 Route::post("login","\App\Http\Controllers\UserController@login");
 Route::post("register","\App\Http\Controllers\UserController@register");
 
-Route::group(["middleware"=>"check.api"],function (){
-    Route::post("token","\App\Http\Controllers\ProjectController@token") ;
-
-});
+//Route::group(["middleware"=>"check.api"],function (){
+//    Route::post("token","\App\Http\Controllers\ProjectController@token") ;
+//
+//});
 
 Route::group(['prefix' => 'cloud', 'middleware' => ['check.api']], function () {
     Route::get('pdfs', [CloudController::class,"pdfs"]);

@@ -26,13 +26,13 @@
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="name">
                             <hr>
-                            AWS Access Key<input type="text" class="form-control" name="aws_access_key">
-                            <hr>
-                            AWS Secret Key<input type="text" class="form-control" name="aws_secret_key">
-                            <hr>
-                            AWS Region<input type="text" class="form-control" name="aws_region">
-                            <hr>
-                            AWS Bucket<input type="text" class="form-control" name="aws_bucket">
+{{--                            AWS Access Key<input type="text" class="form-control" name="aws_access_key">--}}
+{{--                            <hr>--}}
+{{--                            AWS Secret Key<input type="text" class="form-control" name="aws_secret_key">--}}
+{{--                            <hr>--}}
+{{--                            AWS Region<input type="text" class="form-control" name="aws_region">--}}
+{{--                            <hr>--}}
+{{--                            AWS Bucket<input type="text" class="form-control" name="aws_bucket">--}}
                             <button class="btn btn-primary">Create</button>
                         </div>
                     </div>

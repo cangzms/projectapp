@@ -43,18 +43,18 @@ class ProjectController extends Controller
     {
         $validator=$request->validate([
             "name"=>["required"],
-            "aws_access_key"=>["nullable"],
-            "aws_secret_key"=>["nullable"],
-            "aws_region"=>["nullable"],
-            "aws_bucket"=>["nullable"],
+//            "aws_access_key"=>["nullable"],
+//            "aws_secret_key"=>["nullable"],
+//            "aws_region"=>["nullable"],
+//            "aws_bucket"=>["nullable"],
         ]);
 
        $create= Project::create([
            "name"=>$request->name,
-           "aws_access_key"=>$request->aws_access_key,
-            "aws_secret_key"=>$request->aws_secret_key,
-            "aws_region"=>$request->aws_region,
-            "aws_bucket"=>$request->aws_bucket,
+//           "aws_access_key"=>$request->aws_access_key,
+//            "aws_secret_key"=>$request->aws_secret_key,
+//            "aws_region"=>$request->aws_region,
+//            "aws_bucket"=>$request->aws_bucket,
            "user_id"=>auth()->id()
         ]);
 
@@ -103,19 +103,19 @@ class ProjectController extends Controller
     {
         $validator=$request->validate([
             "name"=>["required"],
-            "aws_access_key"=>["nullable"],
-            "aws_secret_key"=>["nullable"],
-            "aws_region"=>["nullable"],
-            "aws_bucket"=>["nullable"],
+//            "aws_access_key"=>["nullable"],
+//            "aws_secret_key"=>["nullable"],
+//            "aws_region"=>["nullable"],
+//            "aws_bucket"=>["nullable"],
         ]);
 
         $updated = Project::where("id",$id)->update([
 
             "name"=>$request->name,
-            "aws_access_key"=>$request->aws_access_key,
-            "aws_secret_key"=>$request->aws_secret_key,
-            "aws_region"=>$request->aws_region,
-            "aws_bucket"=>$request->aws_bucket,
+//            "aws_access_key"=>$request->aws_access_key,
+//            "aws_secret_key"=>$request->aws_secret_key,
+//            "aws_region"=>$request->aws_region,
+//            "aws_bucket"=>$request->aws_bucket,
         ]);
 
 
