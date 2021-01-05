@@ -18,10 +18,7 @@ class Project extends Model
         "user_id",
         "api_key",
         "api_secret",
-        "aws_access_key",
-        "aws_secret_key",
-        "aws_region",
-        "aws_bucket",
+
 
     ];
 

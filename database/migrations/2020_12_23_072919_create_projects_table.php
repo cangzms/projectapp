@@ -20,10 +20,7 @@ class CreateProjectsTable extends Migration
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->string('api_key');
             $table->string('api_secret');
-            $table->string("aws_access_key")->nullable();
-            $table->string("aws_secret_key")->nullable();
-            $table->string("aws_region")->nullable();
-            $table->string("aws_bucket")->nullable();
+
 
             $table->timestamps();
         });

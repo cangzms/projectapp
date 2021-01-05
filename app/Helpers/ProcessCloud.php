@@ -25,7 +25,7 @@ class ProcessCloud
         $this->pdf();
         //$this->png();
         //$this->jpg();
-        $this->svg();
+//        $this->svg();
 
         $this->cloud->update();
 
@@ -49,7 +49,7 @@ class ProcessCloud
         $this->sJpgPath = str_replace('.html', '-standard.jpg', $this->htmlPath);//standard jpg
 
         //put html to s3
-        $this->cloud->html = Storage::cloud()->putFile('updf/html', $this->htmlPath);
+        $this->cloud->html = Storage::disk("cloud")->putFile('updf/html', $this->htmlPath);
         Log::info("Html done");
 
     }
@@ -80,7 +80,7 @@ class ProcessCloud
             $this->pdfPath = $croppedPath;
         }
 
-        $this->cloud->pdf = Storage::cloud()->putFile('updf/pdf', $this->pdfPath);
+        $this->cloud->pdf = Storage::disk("cloud")->putFile('updf/pdf', $this->pdfPath);
         Log::info("Pdf done");
     }
 
@@ -94,13 +94,13 @@ class ProcessCloud
         $cmd = $pdftoppm . " " . $this->pdfPath . "  -scale-to " . config('site.hq_png') . " -png > " . $this->pngPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->png = Storage::cloud()->putFile('updf/png', $this->pngPath);
+        $this->cloud->png = Storage::disk("cloud")->putFile('updf/png', $this->pngPath);
 
         //low resolution
         $cmd = $pdftoppm . " " . $this->pdfPath . " -scale-to " . config('site.standard_png') . " -png > " . $this->sPngPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->spng = Storage::cloud()->putFile('updf/spng', $this->sPngPath, 'public');
+        $this->cloud->spng = Storage::disk("cloud")->putFile('updf/spng', $this->sPngPath, 'public');
         Log::info("Png done");
     }
 
@@ -114,18 +114,18 @@ class ProcessCloud
         $cmd = $pdftoppm . " " . $this->pdfPath . " -scale-to " . config('site.hq_jpg') . " -jpeg -jpegopt quality=100 > " . $this->jpgPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->jpg = Storage::cloud()->putFile('updf/jpg', $this->jpgPath);
+        $this->cloud->jpg = Storage::disk("cloud")->putFile('updf/jpg', $this->jpgPath);
 
         //low resolution
         $cmd = $pdftoppm . " " . $this->pdfPath . " -scale-to " . config('site.standard_jpg') . "  -jpeg -jpegopt quality=90 > " . $this->sJpgPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->sjpg = Storage::cloud()->putFile('updf/sjpg', $this->sJpgPath, 'public');
+        $this->cloud->sjpg = Storage::disk("cloud")->putFile('updf/sjpg', $this->sJpgPath, 'public');
         Log::info("Jpg done");
     }
 
     //slowest
-    public function svg()
+    /*public function svg()
     {
         //convert pdf to svg
         $pdf2svg = exec("which pdf2svg");
@@ -136,8 +136,8 @@ class ProcessCloud
         $cmd = $pdf2svg . " " . $this->pdfPath . " " . $this->svgPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->svg = Storage::cloud()->putFile('updf/svg', $this->svgPath);
+        $this->cloud->svg = Storage::disk("cloud")->putFile('updf/svg', $this->svgPath);
         Log::info("Svg done");
-    }
+    }*/
 
 }

@@ -17,7 +17,7 @@ class CloudController extends Controller
 
         foreach ($pdfs as $pdf) {
             if ($pdf->pdf)
-                $resp[] = [$pdf->code ,Storage::disk('minio')->temporaryUrl($pdf->pdf, now()->addMinutes(5))];
+                $resp[] = [$pdf->code ,Storage::disk("cloud")->temporaryUrl($pdf->pdf, now()->addMinutes(5))];
         }
 
         return response()->json([
@@ -31,8 +31,8 @@ class CloudController extends Controller
         $cloud = Cloud::where('code', $code)->first();
 
         $resp = [
-            'pdf' => Storage::disk('minio')->temporaryUrl($cloud->pdf, now()->addMinutes(5)),
-            'svg' => Storage::disk('minio')->temporaryUrl($cloud->svg, now()->addMinutes(5)),
+            'pdf' => Storage::disk("cloud")->temporaryUrl($cloud->pdf, now()->addMinutes(5)),
+            'svg' => Storage::disk("cloud")->temporaryUrl($cloud->svg, now()->addMinutes(5)),
             //'jpg' => Storage::disk('minio')->temporaryUrl($cloud->jpg, now()->addMinutes(5)),
             //'png' => Storage::disk('minio')->temporaryUrl($cloud->png, now()->addMinutes(5)),
             //'spng' => Storage::disk('minio')->temporaryUrl($cloud->spng, now()->addMinutes(5)),

@@ -24,6 +24,7 @@ class CheckApi
             return response()->json(["message"=>"Api and Secret key needed"],400);
         }
         $project=Project::where("api_key",$request->header("ApiKey"))->where("api_secret",$request->header("ApiSecret"))->first();
+
         if (!$project){
             return response()->json(["message"=>"Api and Secret key error"],404);
         }
