@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CloudController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ Route::post("register","\App\Http\Controllers\UserController@register");
 //});
 
 Route::group(['prefix' => 'cloud', 'middleware' => ['check.api']], function () {
-    Route::get('pdfs', [CloudController::class,"pdfs"]);
-    Route::get('codes/{code}',[CloudController::class,"code"]);
-    Route::post('pdfs', [CloudController::class,"store"]);
+    Route::get('pdfs', [DocumentController::class,"pdfs"]);
+    Route::get('codes/{code}',[DocumentController::class,"code"]);
+    Route::post('pdfs', [DocumentController::class,"store"]);
 });

@@ -24,8 +24,9 @@ class PdfStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'html' => 'required',
-            'head' => 'nullable'
+            'html' => 'required_without:url',
+            'head' => 'nullable',
+            'url'=>'required_without:html'
         ];
     }
 }

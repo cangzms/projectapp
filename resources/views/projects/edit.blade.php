@@ -26,6 +26,9 @@
 
                         <input type="text" class="form-control" value="{{$projects->name}}" name="name">
                         <hr>
+{{--                        Base Url--}}
+{{--                        <input type="text" class="form-control" value="{{$projects->url}}" name="url">--}}
+{{--                        <hr>--}}
 {{--                        <hr>--}}
 {{--                        AWS Access Key<input type="text" class="form-control" value="{{$projects->aws_access_key}}"--}}
 {{--                                             name="aws_access_key">--}}

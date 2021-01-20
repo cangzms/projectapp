@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Helpers\ProcessCloud;
+use App\Helpers\ProcessDocument;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Models\Project;
 
-class Cloud extends Model
+class Document extends Model
 {
-    protected $fillable = ["title", "user_id", "code", "session", "html", "pdf", "svg", "content", "options", "png", "jpg", "spng", "sjpg"];
+    protected $fillable = ["title", "user_id", "code", "session", "html", "pdf", "svg", "content", "options", "png", "jpg", "spng", "sjpg","url"];
 
     public function getRouteKeyName()
     {
@@ -23,11 +24,15 @@ class Cloud extends Model
     public static function startProcess(Request $request)
     {
 
+
         // $data['session'] = Session::getId();
         $data['user_id'] = $request->user()->id ?? null;
         $data['options'] = json_encode($request->options) ?? null;
         $data['code'] = self::randomCode();
-        $data['content'] = '<!doctype html>
+
+        $data['url']=$request->url ?? null;
+        if (!$request->url) {
+            $data['content'] = '<!doctype html>
         <html>
         <head>
         <meta charset="UTF-8">
@@ -69,21 +74,23 @@ class Cloud extends Model
             background-color:none;
         }
 
-        #cloud{
+        #document{
             margin:0 auto;
             position:relative;
             width:50%;
-        }'
-        . str_replace('transform:', '-webkit-transform:', $request->head ?? '') .'
+        }
 
         </style>
+          ' . str_replace('transform:', '-webkit-transform:', $request->head ?? '') . '
         </head>
-        <body><div id="cloud">'
-            . str_replace('transform:', '-webkit-transform:', $request->html ?? '')
-            . '</div></body></html>';
+        <body><div id="document">'
+                . str_replace('transform:', '-webkit-transform:', $request->html ?? '')
+                . '</div></body></html>';
+        };
 
-        if ($cloud = self::create($data)){
-             $proc = new ProcessCloud($cloud);
+
+        if ($document = self::create($data)){
+             $proc = new ProcessDocument($document);
              return $proc->makeProcess();
         }
         return [
@@ -92,15 +99,15 @@ class Cloud extends Model
         ];
     }
 
-    public function getUrl($type)
+   /* public function getUrl($type)
     {
 
-        $url = Storage::cloud()->temporaryUrl(
+        $url = Storage::document()->temporaryUrl(
             $this->attributes[$type], Carbon::now()->addMinutes(5)
         );
 
         return $url;
-    }
+    }*/
 
     public static function randomCode($length = 16)
     {

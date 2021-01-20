@@ -15,6 +15,7 @@ class Project extends Model
 
     protected $fillable =[
         "name",
+        "url",
         "user_id",
         "api_key",
         "api_secret",

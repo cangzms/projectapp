@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCloudsTable extends Migration
+class CreateDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCloudsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clouds', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string("code")->unique();
             $table->string('title')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->longtext('content');
+            $table->longtext('content')->nullable();
             $table->text('options')->nullable();
             $table->string('html')->nullable();
             $table->string('pdf')->nullable();
@@ -39,6 +39,6 @@ class CreateCloudsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clouds');
+        Schema::dropIfExists('documents');
     }
 }

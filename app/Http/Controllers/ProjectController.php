@@ -42,7 +42,8 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validator=$request->validate([
-            "name"=>["required"],
+            "name"=>"required",
+            "url"=>"required"
 //            "aws_access_key"=>["nullable"],
 //            "aws_secret_key"=>["nullable"],
 //            "aws_region"=>["nullable"],
@@ -51,6 +52,7 @@ class ProjectController extends Controller
 
        $create= Project::create([
            "name"=>$request->name,
+            "url"=>$request->url,
 //           "aws_access_key"=>$request->aws_access_key,
 //            "aws_secret_key"=>$request->aws_secret_key,
 //            "aws_region"=>$request->aws_region,
@@ -103,6 +105,7 @@ class ProjectController extends Controller
     {
         $validator=$request->validate([
             "name"=>["required"],
+            "url"=>"required"
 //            "aws_access_key"=>["nullable"],
 //            "aws_secret_key"=>["nullable"],
 //            "aws_region"=>["nullable"],
@@ -112,6 +115,7 @@ class ProjectController extends Controller
         $updated = Project::where("id",$id)->update([
 
             "name"=>$request->name,
+            "url"=>$request->url,
 //            "aws_access_key"=>$request->aws_access_key,
 //            "aws_secret_key"=>$request->aws_secret_key,
 //            "aws_region"=>$request->aws_region,

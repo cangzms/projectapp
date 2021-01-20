@@ -6,16 +6,16 @@ use Storage;
 use App;
 use Log;
 
-use App\Models\Cloud;
+use App\Models\Document;
 
-class ProcessCloud
+class ProcessDocument
 {
-    protected $cloud;
+    protected $document;
     protected $pdfPath, $svgPath, $pngPath, $jpgPath, $sPngPath, $sJpgPath, $htmlPath;
 
-    public function __construct(Cloud $cloud)
+    public function __construct(Document $document)
     {
-        $this->cloud = $cloud;
+        $this->document = $document;
     }
 
     public function makeProcess()
@@ -27,29 +27,30 @@ class ProcessCloud
         //$this->jpg();
 //        $this->svg();
 
-        $this->cloud->update();
+        $this->document->update();
 
         return [
-            'code' => $this->cloud->code,
-            //'sjpg' => $this->cloud->sjpg
+            'code' => $this->document->code,
+            //'sjpg' => $this->document->sjpg
         ];
     }
 
     public function html()
     {
+
         $temp = uniqid() . ".html";
         //put html to local to convert pdf
-        Storage::put('updf/'.$temp, $this->cloud->content);
+        Storage::put('updf/'.$temp, $this->document->content);
         $this->htmlPath = Storage::path('updf/'.$temp);
         $this->pdfPath = str_replace('.html', '.pdf', $this->htmlPath);
-        $this->svgPath = str_replace('.html', '.svg', $this->htmlPath);
-        $this->pngPath = str_replace('.html', '.png', $this->htmlPath);
-        $this->jpgPath = str_replace('.html', '.jpg', $this->htmlPath);
-        $this->sPngPath = str_replace('.html', '-standard.png', $this->htmlPath);//standard png
-        $this->sJpgPath = str_replace('.html', '-standard.jpg', $this->htmlPath);//standard jpg
+//        $this->svgPath = str_replace('.html', '.svg', $this->htmlPath);
+//        $this->pngPath = str_replace('.html', '.png', $this->htmlPath);
+//        $this->jpgPath = str_replace('.html', '.jpg', $this->htmlPath);
+//        $this->sPngPath = str_replace('.html', '-standard.png', $this->htmlPath);//standard png
+//        $this->sJpgPath = str_replace('.html', '-standard.jpg', $this->htmlPath);//standard jpg
 
         //put html to s3
-        $this->cloud->html = Storage::disk("cloud")->putFile('updf/html', $this->htmlPath);
+        $this->document->html = Storage::disk("document")->putFile('updf/html', $this->htmlPath);
         Log::info("Html done");
 
     }
@@ -58,14 +59,16 @@ class ProcessCloud
     {
         $chrome = exec("which google-chrome");
 
-        if (App::isLocal())
-            $chrome = '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome';
+        if (App::isLocal()){
+            //$chrome = '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'; // for macos
+            $chrome = '/usr/bin/google-chrome'; // for ubuntu
+        }
 
         if (!$chrome)
             throw new \Exception ('Library missing (1)');
 
         //convert html to a3 pdf (a3 is in css)
-        $cmd = $chrome . " --no-sandbox --headless --print-to-pdf=" . $this->pdfPath . " " . $this->htmlPath;
+        $cmd = $chrome . " --no-sandbox --headless --print-to-pdf=" . $this->pdfPath . " " .($this->document->url ?? $this->htmlPath);
         Log::info($cmd);
         $result = exec($cmd);
 
@@ -80,7 +83,7 @@ class ProcessCloud
             $this->pdfPath = $croppedPath;
         }
 
-        $this->cloud->pdf = Storage::disk("cloud")->putFile('updf/pdf', $this->pdfPath);
+        $this->document->pdf = Storage::disk("document")->putFile('updf/pdf', $this->pdfPath);
         Log::info("Pdf done");
     }
 
@@ -94,13 +97,13 @@ class ProcessCloud
         $cmd = $pdftoppm . " " . $this->pdfPath . "  -scale-to " . config('site.hq_png') . " -png > " . $this->pngPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->png = Storage::disk("cloud")->putFile('updf/png', $this->pngPath);
+        $this->document->png = Storage::disk("document")->putFile('updf/png', $this->pngPath);
 
         //low resolution
         $cmd = $pdftoppm . " " . $this->pdfPath . " -scale-to " . config('site.standard_png') . " -png > " . $this->sPngPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->spng = Storage::disk("cloud")->putFile('updf/spng', $this->sPngPath, 'public');
+        $this->document->spng = Storage::disk("document")->putFile('updf/spng', $this->sPngPath, 'public');
         Log::info("Png done");
     }
 
@@ -114,13 +117,13 @@ class ProcessCloud
         $cmd = $pdftoppm . " " . $this->pdfPath . " -scale-to " . config('site.hq_jpg') . " -jpeg -jpegopt quality=100 > " . $this->jpgPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->jpg = Storage::disk("cloud")->putFile('updf/jpg', $this->jpgPath);
+        $this->document->jpg = Storage::disk("document")->putFile('updf/jpg', $this->jpgPath);
 
         //low resolution
         $cmd = $pdftoppm . " " . $this->pdfPath . " -scale-to " . config('site.standard_jpg') . "  -jpeg -jpegopt quality=90 > " . $this->sJpgPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->sjpg = Storage::disk("cloud")->putFile('updf/sjpg', $this->sJpgPath, 'public');
+        $this->document->sjpg = Storage::disk("document")->putFile('updf/sjpg', $this->sJpgPath, 'public');
         Log::info("Jpg done");
     }
 
@@ -136,7 +139,7 @@ class ProcessCloud
         $cmd = $pdf2svg . " " . $this->pdfPath . " " . $this->svgPath;
         Log::info($cmd);
         $result = exec($cmd);
-        $this->cloud->svg = Storage::disk("cloud")->putFile('updf/svg', $this->svgPath);
+        $this->document->svg = Storage::disk("document")->putFile('updf/svg', $this->svgPath);
         Log::info("Svg done");
     }*/
 

@@ -26,6 +26,9 @@
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="name">
                             <hr>
+{{--                            Base Url--}}
+{{--                            <input type="text" class="form-control" name="url">--}}
+{{--                            <hr>--}}
 {{--                            AWS Access Key<input type="text" class="form-control" name="aws_access_key">--}}
 {{--                            <hr>--}}
 {{--                            AWS Secret Key<input type="text" class="form-control" name="aws_secret_key">--}}
