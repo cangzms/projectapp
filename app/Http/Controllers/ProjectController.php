@@ -42,30 +42,19 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validator=$request->validate([
-            "name"=>"required",
-            "url"=>"required"
-//            "aws_access_key"=>["nullable"],
-//            "aws_secret_key"=>["nullable"],
-//            "aws_region"=>["nullable"],
-//            "aws_bucket"=>["nullable"],
+            "name"=>"required"
+
         ]);
 
        $create= Project::create([
            "name"=>$request->name,
-            "url"=>$request->url,
-//           "aws_access_key"=>$request->aws_access_key,
-//            "aws_secret_key"=>$request->aws_secret_key,
-//            "aws_region"=>$request->aws_region,
-//            "aws_bucket"=>$request->aws_bucket,
+
            "user_id"=>auth()->id()
         ]);
 
-        if (!$validator){
-            return back()->with("error","Enter a Different Name");
-        }
-        else{
-            return redirect(route("projects.index"))->with("success","Create Project Successful");
-        }
+
+        return redirect(route("projects.index"))->with("success","Create Project Successful");
+
 
 
     }
@@ -104,22 +93,13 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         $validator=$request->validate([
-            "name"=>["required"],
-            "url"=>"required"
-//            "aws_access_key"=>["nullable"],
-//            "aws_secret_key"=>["nullable"],
-//            "aws_region"=>["nullable"],
-//            "aws_bucket"=>["nullable"],
+            "name"=>["required"]
         ]);
 
         $updated = Project::where("id",$id)->update([
 
-            "name"=>$request->name,
-            "url"=>$request->url,
-//            "aws_access_key"=>$request->aws_access_key,
-//            "aws_secret_key"=>$request->aws_secret_key,
-//            "aws_region"=>$request->aws_region,
-//            "aws_bucket"=>$request->aws_bucket,
+            "name"=>$request->name
+
         ]);
 
 

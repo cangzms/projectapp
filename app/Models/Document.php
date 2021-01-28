@@ -86,7 +86,7 @@ class Document extends Model
         <body><div id="document">'
                 . str_replace('transform:', '-webkit-transform:', $request->html ?? '')
                 . '</div></body></html>';
-        };
+        }
 
 
         if ($document = self::create($data)){
