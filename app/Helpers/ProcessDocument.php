@@ -23,8 +23,8 @@ class ProcessDocument
 
         $this->html();
         $this->pdf();
-        //$this->png();
-        //$this->jpg();
+//        $this->png();
+//        $this->jpg();
 //        $this->svg();
 
         $this->document->update();

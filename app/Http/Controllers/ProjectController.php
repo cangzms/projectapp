@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequests;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +17,7 @@ class ProjectController extends Controller
     public function index()
     {
         $id=Auth::user()->id;
-
         $projects=Project::where("user_id",$id)->orderBy("user_id")->get();
-
-
         return view('projects.index', compact('projects'));
     }
 
@@ -39,24 +37,13 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectRequests $request)
     {
-        $validator=$request->validate([
-            "name"=>"required"
-
-        ]);
-
        $create= Project::create([
            "name"=>$request->name,
-
            "user_id"=>auth()->id()
         ]);
-
-
         return redirect(route("projects.index"))->with("success","Create Project Successful");
-
-
-
     }
 
     /**
@@ -90,21 +77,13 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+        public function update(ProjectRequests $request, $id)
     {
-        $validator=$request->validate([
-            "name"=>["required"]
-        ]);
-
         $updated = Project::where("id",$id)->update([
-
             "name"=>$request->name
-
         ]);
 
-
-            return redirect(route("projects.index"))->with("success","Edit Project Successful");
-
+        return redirect(route("projects.index"))->with("success","Edit Project Successful");
     }
 
     /**
@@ -115,7 +94,6 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-
         $deleted=Project::where("id",$id)->delete();
         return redirect(route("projects.index"));
     }
