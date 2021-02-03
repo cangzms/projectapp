@@ -11,7 +11,6 @@
 <body>
 
 <x-guest-layout>
-    <button type="submit" value="tr" class="btn btn-primary">TR</button></a>
     <x-auth-card>
 
         <x-slot name="logo">
