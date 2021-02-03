@@ -15,9 +15,7 @@
                 {{ csrf_field() }}
                 <div class="form-group" align="center">
                     <div class="col-xs-6 col-xs-offset-3 col-md-3">
-                        Project Name
-
-
+                        {{__("Project Name")}}
                         @if($errors->has("name"))
                             <div id="validationServer03Feedback" class="alert alert-danger">
                                 {{$errors->first("name")}}
@@ -26,17 +24,7 @@
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="name">
                             <hr>
-{{--                            Base Url--}}
-{{--                            <input type="text" class="form-control" name="url">--}}
-{{--                            <hr>--}}
-{{--                            AWS Access Key<input type="text" class="form-control" name="aws_access_key">--}}
-{{--                            <hr>--}}
-{{--                            AWS Secret Key<input type="text" class="form-control" name="aws_secret_key">--}}
-{{--                            <hr>--}}
-{{--                            AWS Region<input type="text" class="form-control" name="aws_region">--}}
-{{--                            <hr>--}}
-{{--                            AWS Bucket<input type="text" class="form-control" name="aws_bucket">--}}
-                            <button class="btn btn-primary">Create</button>
+                            <button class="btn btn-primary">{{__("Create")}}</button>
                         </div>
                     </div>
                 </div>

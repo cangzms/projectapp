@@ -14,7 +14,7 @@
                     <div class="table-responsive">
                         <table class="table  ">
 
-                            <b>Project Name</b> = {{$project->name}}
+                            <b>{{__("Project Name")}}</b> = {{$project->name}}
                             <hr>
 
                             <b>Api Key</b> = {{$project->api_key}}
@@ -23,10 +23,7 @@
                             <b>Api Secret</b> = {{$project->api_secret}}
                             <hr>
 
-                                 <a href="{{route("projects.index")}}"><button class="btn btn-warning">Back</button></a>
-
-
-
+                            <a href="{{route("projects.index")}}"><button class="btn btn-warning">{{__("Back")}}</button></a>
 
                         </table>
                     </div>

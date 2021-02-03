@@ -1,0 +1,30 @@
+{
+    "Create a Project": "Proje oluştur",
+    "View": "Göster",
+    "Edit": "Düzenle",
+    "Delete": "Sil",
+    "There is no project.": "Proje mevcut değil",
+    "Name": "İsim",
+    "Created at": "Oluşturma Tarihi",
+    "Create": "Oluştur",
+    "Project Name": "Proje İsmi",
+    "Edit Project": "Projeyi Düzenle",
+    "Edit Project Name": "Proje İsmini Düzenle",
+    "Save": "Kaydet",
+    "Projects": "Projeler",
+    "Create Project": "Proje Oluştur",
+    "Back": "Geri",
+    "Email":"Eposta",
+    "Password":"Şifre",
+    "Remember me": "Beni Unutma",
+    "Sign Up": "Üye Ol",
+    "Login": "Giriş Yap",
+    "Confirm Password": "Şifreyi Onayla",
+    "Sign In": "Giriş Yap",
+    "Register": "Üye Ol",
+    "Are you sure you want to delete this?": "Silmek istediğine emin misin?",
+    "Dashboard": "Panel",
+    "Logout": "Çıkış Yap"
+
+
+}

@@ -5,10 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f15f4a7-c535-446c-ad4c-18669be82c39" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/tr.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/lang.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Helpers/ProcessDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/ProcessDocument.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckApi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Document.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Document.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/application-logo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/application-logo.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projects/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projects/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projects/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projects/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +33,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -396,6 +418,7 @@
       <recent name="$PROJECT_DIR$/app/Models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/layouts" />
       <recent name="$PROJECT_DIR$/app/Models" />
       <recent name="$PROJECT_DIR$/resources/views/projects" />
     </key>
@@ -430,6 +453,13 @@
       <workItem from="1611775021086" duration="1643000" />
       <workItem from="1611781095145" duration="1430000" />
       <workItem from="1611815996641" duration="7705000" />
+      <workItem from="1611842999334" duration="811000" />
+      <workItem from="1612161294511" duration="2455000" />
+      <workItem from="1612165366995" duration="8000" />
+      <workItem from="1612182223092" duration="1306000" />
+      <workItem from="1612249466594" duration="1243000" />
+      <workItem from="1612259194943" duration="10863000" />
+      <workItem from="1612334121364" duration="13196000" />
     </task>
     <servers />
   </component>

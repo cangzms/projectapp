@@ -21,7 +21,7 @@ class CheckApi
             return response()->json(["message"=>"Accept must be application/json"],404);
         }
         if (!$request->header("ApiKey")||!$request->header("ApiSecret")){
-            return response()->json(["message"=>"Api and Secret key needed"],400);
+            return response()->json(["message"=>"Faulty or Incomplete Key Entry "],400);
         }
         $project=Project::where("api_key",$request->header("ApiKey"))->where("api_secret",$request->header("ApiSecret"))->first();
 

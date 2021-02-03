@@ -23,15 +23,12 @@ class ProcessDocument
 
         $this->html();
         $this->pdf();
-//        $this->png();
-//        $this->jpg();
-//        $this->svg();
+
 
         $this->document->update();
 
         return [
             'code' => $this->document->code,
-            //'sjpg' => $this->document->sjpg
         ];
     }
 
@@ -43,11 +40,6 @@ class ProcessDocument
         Storage::put('updf/'.$temp, $this->document->content);
         $this->htmlPath = Storage::path('updf/'.$temp);
         $this->pdfPath = str_replace('.html', '.pdf', $this->htmlPath);
-//        $this->svgPath = str_replace('.html', '.svg', $this->htmlPath);
-//        $this->pngPath = str_replace('.html', '.png', $this->htmlPath);
-//        $this->jpgPath = str_replace('.html', '.jpg', $this->htmlPath);
-//        $this->sPngPath = str_replace('.html', '-standard.png', $this->htmlPath);//standard png
-//        $this->sJpgPath = str_replace('.html', '-standard.jpg', $this->htmlPath);//standard jpg
 
         //put html to s3
         $this->document->html = Storage::disk("document")->putFile('updf/html', $this->htmlPath);
@@ -127,20 +119,5 @@ class ProcessDocument
         Log::info("Jpg done");
     }
 
-    //slowest
-    /*public function svg()
-    {
-        //convert pdf to svg
-        $pdf2svg = exec("which pdf2svg");
-
-        if (!$pdf2svg)
-            throw new \Exception ('Library missing (4)');
-
-        $cmd = $pdf2svg . " " . $this->pdfPath . " " . $this->svgPath;
-        Log::info($cmd);
-        $result = exec($cmd);
-        $this->document->svg = Storage::disk("document")->putFile('updf/svg', $this->svgPath);
-        Log::info("Svg done");
-    }*/
 
 }

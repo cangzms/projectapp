@@ -24,8 +24,6 @@ class Document extends Model
     public static function startProcess(Request $request)
     {
 
-
-        // $data['session'] = Session::getId();
         $data['user_id'] = $request->user()->id ?? null;
         $data['options'] = json_encode($request->options) ?? null;
         $data['code'] = self::randomCode();
@@ -98,20 +96,12 @@ class Document extends Model
             'sjpg' => null
         ];
     }
-
-   /* public function getUrl($type)
-    {
-
-        $url = Storage::document()->temporaryUrl(
-            $this->attributes[$type], Carbon::now()->addMinutes(5)
-        );
-
-        return $url;
-    }*/
-
     public static function randomCode($length = 16)
     {
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         return substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
     }
+
+
+
 }

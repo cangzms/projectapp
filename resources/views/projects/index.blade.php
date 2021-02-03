@@ -25,15 +25,19 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <!-- Responsive table -->
                     <div class="table-responsive">
-                        <table class="table  ">
 
-                            <button type="button" class="btn btn-outline-primary pull-right"><a href="{{route
-                            ("projects.create")}}">Create a
-                                    Project</a></button>
+                        <a class="btn btn-success pull-right mb-3" href="{{route
+                            ("projects.create")}}">{{__("Create a Project")}}</a>
+                        <div class="clearfix"></div>
+
+                        @if(count($projects))
+
+                        <table class="table ">
+
                             <thead>
                             <tr >
-                                <th scope="col">Name</th>
-                                <th scope="col">Created at</th>
+                                <th scope="col">{{__("Name")}}</th>
+                                <th scope="col">{{__("Created at")}}</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -47,13 +51,13 @@
                                     <!-- Call to action buttons -->
                                     <ul class="list-inline m-0 pull-right">
                                         <li class="list-inline-item">
-                                            <a href="{{route("projects.show",$project->id)}}"><button class="btn btn-primary "type="button">View</button></a>
+                                            <a href="{{route("projects.show",$project->id)}}"><button class="btn btn-primary "type="button">{{__("View")}}</button></a>
                                         </li>
 
                                         <li class="list-inline-item">
                                             <a href="{{route("projects.edit",$project->id)}}"><button class="btn
                                          btn-success "
-                                            type="button">Edit</button></a>
+                                            type="button">{{__("Edit")}}</button></a>
                                         </li>
                                         <li class="list-inline-item" >
                                             <form method="POST" action="{{ route('projects.destroy', $project->id) }}">
@@ -61,7 +65,7 @@
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 <button type="submit" class="btn btn-xs btn-danger btn-flat
                                                 show_confirm" data-toggle="tooltip" title='Delete'> <i class="fa
-                                                fa-trash"> </i>Delete</button>
+                                                fa-trash"> </i>{{__("Delete")}}</button>
                                             </form>
                                         </li>
                                     </ul>
@@ -72,7 +76,13 @@
                             @endforeach
 
                         </table>
+                        @else
+                        <div class="alert alert-info text-center">
+                            {{__("There is no project.")}}
+                        </div>
+                        @endif
                     </div>
+
                 </div>
             </div>
         </div>

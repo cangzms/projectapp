@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,15 +13,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Auth::routes();
+
 
 Route::resource("/projects","\App\Http\Controllers\ProjectController")->middleware("auth");
 
 Route::get('/', "\App\Http\Controllers\HomeController@index")->middleware("auth");
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth'])->name('dashboard');
+Route::get("{locale}/",function ($locale){
+
+
+});
 
 require __DIR__.'/auth.php';

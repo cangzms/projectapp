@@ -16,7 +16,7 @@
                 @method("PUT")
                 <div class="form-group" align="center">
                     <div class="col-xs-6 col-xs-offset-3 col-md-3">
-                        Edit Project Name
+                        {{__("Edit Project Name")}}
                         <hr>
                         @if($errors->has("name"))
                         <div id="validationServer03Feedback" class="alert alert-danger">
@@ -26,19 +26,7 @@
 
                         <input type="text" class="form-control" value="{{$projects->name}}" name="name">
                         <hr>
-{{--                        Base Url--}}
-{{--                        <input type="text" class="form-control" value="{{$projects->url}}" name="url">--}}
-{{--                        <hr>--}}
-{{--                        <hr>--}}
-{{--                        AWS Access Key<input type="text" class="form-control" value="{{$projects->aws_access_key}}"--}}
-{{--                                             name="aws_access_key">--}}
-{{--                        <hr>--}}
-{{--                        AWS Secret Key<input type="text" class="form-control" value="{{$projects->aws_secret_key}}" name="aws_secret_key">--}}
-{{--                        <hr>--}}
-{{--                        AWS Region<input type="text" class="form-control" value="{{$projects->aws_region}}" name="aws_region">--}}
-{{--                        <hr>--}}
-{{--                        AWS Bucket<input type="text" class="form-control" value="{{$projects->aws_bucket}}" name="aws_bucket">--}}
-                            <button class="btn btn-info" >Save</button>
+                            <button class="btn btn-info" >{{__("Save")}}</button>
 
                     </div>
                 </div>
